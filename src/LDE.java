@@ -10,6 +10,28 @@ public class LDE {
             return false;
         }
     }
+    public Node buscaMelhorada(Cliente c){
+        Node aux;
+        int retorno;
+        if(this.isEmpty() == true){
+            return null;
+        }
+        else{
+            aux = this.primeiro;
+            while(aux != null){
+                retorno = aux.getInfo().compareTo(c);
+                if (retorno == 0) {
+                    return aux;
+                }
+                else if (retorno > 0){
+                    return null;
+                }
+                else{
+                    aux = aux.getProx();
+                }
+            }
+        }
+    }
 
     public void inserirOrdenado(Cliente c) {
         Node novo = new Node(c);
