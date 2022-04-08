@@ -1,81 +1,153 @@
-public class LDE {
+public class LDE { // ORDENADA em ordem crescente
     private Node primeiro;
     private int qtd;
     private Node ultimo;
 
-    public boolean isEmpty() {
+    public boolean isEmpty () {
         if (this.primeiro == null && this.qtd == 0 && this.ultimo == null) {
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
-    public Node buscaMelhorada(Cliente c){
+
+    public Node buscaMelhorada (Cliente c) {
         Node aux;
         int retorno;
-        if(this.isEmpty() == true){
+        if (this.isEmpty() == true) {
             return null;
         }
-        else{
+        else {
             aux = this.primeiro;
-            while(aux != null){
+            while (aux != null) {
                 retorno = aux.getInfo().compareTo(c);
                 if (retorno == 0) {
                     return aux;
                 }
-                else if (retorno > 0){
+                else if (retorno > 0) {
                     return null;
                 }
-                else{
+                else {
                     aux = aux.getProx();
                 }
             }
+            return null;
         }
     }
 
-    public void inserirOrdenado(Cliente c) {
-        Node novo = new Node(c);
+    public void inserirOrdenadoCrescente (Cliente c) {
+        Node novo = new Node (c);
+        Node aux, anterior;
+        int retorno;
         if (this.isEmpty() == true) { // inserção na lista vazia
             this.primeiro = novo;
             this.ultimo = novo;
             this.qtd++;
-        } else if (c.compareTo(this.primeiro.getInfo()) < 0) { // inserção antes do primeiro
+        }
+        else if (c.compareTo(this.primeiro.getInfo()) < 0) { // inserção antes do primeiro
             novo.setProx(this.primeiro);
             this.primeiro.setAnt(novo);
             this.primeiro = novo;
             this.qtd++;
-        } else if (c.compareTo(this.ultimo.getInfo()) > 0) { // inserção após o último
+        }
+        else if (c.compareTo(this.ultimo.getInfo()) > 0) { // inserção após o último
             this.ultimo.setProx(novo);
             novo.setAnt(this.ultimo);
             this.ultimo = novo;
             this.qtd++;
-        } else { // inserção no meio - depois do primeiro e antes do último
-            Node aux = this.primeiro;
-            while (aux != null){
-                int retorno = aux.getInfo().compareTo(c);
-                if (retorno == 0){
-                    System.out.println("Valor Repetido!");
+        }
+        else { // inserção no meio - depois do primeiro e antes do último
+            aux = this.primeiro;
+            while (aux != null) {
+                retorno = aux.getInfo().compareTo(c);
+                if (retorno == 0) {
+                    System.out.println("CPF já cadastrado. Inserção não efetuada!");
                     return;
                 }
-                else if (retorno > 0){
-                    Node anterior = aux.getAnt();
+                else if (retorno > 0) {
+                    anterior = aux.getAnt();
                     novo.setAnt(anterior);
                     novo.setProx(aux);
                     anterior.setProx(novo);
                     aux.setAnt(novo);
-                    this.qtd ++;
-                    System.out.println("Inserção efetuada com sucesso!");
+                    this.qtd++;
+                    System.out.println("Cliente inserido com sucesso!!");
                     return;
                 }
                 else {
                     aux = aux.getProx();
                 }
             }
-
-
         }
-
-
+    }
+    public void inserirOrdenadoDecrescente (Cliente c) {
+        Node novo = new Node (c);
+        Node aux, anterior;
+        int retorno;
+        if (this.isEmpty() == true) { // inserção na lista vazia
+            this.primeiro = novo;
+            this.ultimo = novo;
+            this.qtd++;
+        }
+        else if (c.compareTo(this.primeiro.getInfo()) > 0) { // inserção antes do primeiro
+            novo.setProx(this.primeiro);
+            this.primeiro.setAnt(novo);
+            this.primeiro = novo;
+            this.qtd++;
+        }
+        else if (c.compareTo(this.ultimo.getInfo()) < 0) { // inserção após o último
+            this.ultimo.setProx(novo);
+            novo.setAnt(this.ultimo);
+            this.ultimo = novo;
+            this.qtd++;
+        }
+        else { // inserção no meio - depois do primeiro e antes do último
+            aux = this.primeiro;
+            while (aux != null) {
+                retorno = aux.getInfo().compareTo(c);
+                if (retorno == 0) {
+                    System.out.println("CPF já cadastrado. Inserção não efetuada!");
+                    return;
+                }
+                else if (retorno > 0) {
+                    anterior = aux.getAnt();
+                    novo.setAnt(anterior);
+                    novo.setProx(aux);
+                    anterior.setProx(novo);
+                    aux.setAnt(novo);
+                    this.qtd++;
+                    System.out.println("Cliente inserido com sucesso!!");
+                    return;
+                }
+                else {
+                    aux = aux.getProx();
+                }
+            }
+        }
+    }
+    public void inserirDuplicado(Cliente c){
+        Node novo = new Node (c);
+        Node aux, anterior;
+        int retorno;
+        aux = this.primeiro;
+        while (aux != null) {
+            retorno = aux.getInfo().compareTo(c);
+            if (retorno == 0) {
+                novo.setProx(this.primeiro);
+                this.primeiro.setAnt(novo);
+                this.primeiro = novo;
+                this.qtd++;
+                System.out.println("Cliente inserido com sucesso!!");
+                return;
+            }
+            else {
+                aux = aux.getProx();
+            }
+        }
+    }
+    public void buscaRemover(){
+        
     }
 
     public void exibirLista() {
