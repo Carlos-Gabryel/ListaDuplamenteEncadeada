@@ -46,7 +46,11 @@ public class ListaDuplamenteEncadeada {
                     cliente = new Cliente(cpf, nome, fone, email);
                     listaClientes.inserirDuplicado(cliente);
                     break;
-                case '4' : listaClientes.exibirLista();
+                case '4' : System.out.print("Informe o CPF do cliente: ");
+                    cpf = in.nextLine();
+                    listaClientes.buscaRemover(cpf);
+                    break;
+                case '5' : listaClientes.exibirLista();
                     break;
                 case '0' : System.out.println("Bye bye!");
                     break;
@@ -60,7 +64,8 @@ public class ListaDuplamenteEncadeada {
         System.out.println("1 - Cadastrar um novo cliente na lista");
         System.out.println("2 - Cadastrar um novo cliente na lista de forma DECRESCENTE");
         System.out.println("3 - Cadastrar um cliente REPETIDO");
-        System.out.println("4 - Exibir todos os clientes cadastrados");
+        System.out.println("4 - Excluir um cliente especifico!");
+        System.out.println("5 - Exibir todos os clientes cadastrados");
         System.out.println("0 - Sair do programa");
         System.out.print("Informe a opção desejada: ");
     }

@@ -14,9 +14,9 @@ public class Cliente implements Comparable <Cliente>{
         this.email = email;
     }
 
-    public int compareTo (Cliente c) {
+    public int compareTo (Cliente cpf) {
         int retorno;
-        retorno = this.cpf.compareTo(c.cpf);
+        retorno = this.cpf.compareTo(cpf.cpf);
         return retorno;
     }
     @Override
